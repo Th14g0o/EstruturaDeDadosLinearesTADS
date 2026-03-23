@@ -1,4 +1,4 @@
-package aulas.pilha;
+package aulas.aula01;
 
 public class PilhaArray implements Pilha {
     private int capacidade;

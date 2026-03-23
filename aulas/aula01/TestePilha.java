@@ -1,4 +1,4 @@
-package aulas.pilha;
+package aulas.aula01;
 
 public class TestePilha {
 	public static long tempoInicial = 0;
