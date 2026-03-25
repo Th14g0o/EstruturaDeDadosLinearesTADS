@@ -7,3 +7,5 @@ Projete uma classe que contenha duas pilhas, uma “vermelha” e outra “preta
 **OBS.**: Sempre que o array (que contém as duas pilhas) estiver com 1/3 de utilização, usar a estratégia de REDUÇÃO  do tamanho do array pela metade.
 
 > Atividade avaliativa em grupo de 5 componentes: TODOS os compopnentes devem submeter individualmente um arquivo PDF com a solução acordada pelo grupo.
+
+**Parte escrita da atividade** : [Link aqui](ATIVIDADE.md)
