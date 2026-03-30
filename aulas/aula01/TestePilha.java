@@ -11,7 +11,7 @@ public class TestePilha {
 		System.out.println("inserindo");
 		tempoInicial = System.currentTimeMillis();
 		for(int f=0;f<qtdInteracoes;f++){		  
-		  pp.push(new Integer(f));
+		  pp.push(f);
 		}
 		tempoFinal = System.currentTimeMillis();
 		System.out.println("Execução em milisegundos: " + (tempoFinal - tempoInicial));
@@ -32,7 +32,7 @@ public class TestePilha {
 		System.out.println("inserindo");
 		tempoInicial = System.currentTimeMillis();
 		for(int f=0;f<qtdInteracoes;f++){		  
-		  pp.push(new Integer(f));
+		  pp.push(f);
 		}
 		tempoFinal = System.currentTimeMillis();
 		System.out.println("Execução em milisegundos: " + (tempoFinal - tempoInicial));
