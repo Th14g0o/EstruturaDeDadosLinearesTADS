@@ -14,13 +14,12 @@ public class FilaSimplesmenteEncadeada implements IFila {
     public void enfileirar(Object obj){
         No novo = new No();
         novo.setValor(obj);
-        if (this.i == null) this.i = novo;
-        else{
-            boolean seta = false;
-            if (this.f != null) f.setProximo(novo);
-            else seta = true;
+        if (this.taVazio()) {
+            this.i = novo;
             this.f = novo;
-            if (seta) this.i.setProximo(this.f);
+        } else {
+            this.f.setProximo(novo);
+            this.f = novo;
         }
         this.tam++;
     }
@@ -29,6 +28,7 @@ public class FilaSimplesmenteEncadeada implements IFila {
         if (this.taVazio()) throw new FilaSimplesmenteEncadeadaExcecao("A fila simplesmente encadeada está vazia");
         Object deletado = i.getValor();
         this.i = this.i.getProximo();
+        if (this.i == null) this.f = null;
         this.tam--;
         return deletado;
     }

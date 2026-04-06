@@ -33,8 +33,6 @@ public class TesteFila {
         fila.enfileirar(10);
         fila.enfileirar(20);
         fila.enfileirar(30);
-        System.out.println(fila.primeiro());
-        System.out.println(fila.ultimo());
 
         if (fila.tamanho() == 3) {
             System.out.println("OK: Tamanho correto após inserções");
