@@ -68,9 +68,9 @@ public class MDToHTMLSimples {
         }
 
         try {
-            String conteudo = Files.readString(Path.of("uteis\\MDToHTML\\base.html"));
+            String conteudo = Files.readString(Path.of("uteis/MDToHTML/base.html"));
             conteudo = conteudo.replace("{[(conteudo)]}", this.conteudo);
-            Files.writeString(Path.of("uteis\\MDToHTML\\saida.html"), conteudo);
+            Files.writeString(Path.of("uteis/MDToHTML/saida.html"), conteudo);
             System.out.println("Arquivo gerado com sucesso!");
         } catch (IOException e) {
             e.printStackTrace();
