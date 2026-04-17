@@ -139,8 +139,6 @@ public Object topVermelho() throws PilhaVaziaExcecao {
 
 Com isso, finalizei a implementação da pilha “rubro-negra” em array. Em seguida, realizei testes básicos: verifiquei se a pilha estava vazia, se o `size` retornava 0 e se as exceções eram lançadas corretamente. Testei também `push` e `pop` para garantir o comportamento LIFO, além dos métodos `top`. Por fim, validei o crescimento e a redução da capacidade do array.
 
----
-
 ## Código completo da exceção
 
 ```java

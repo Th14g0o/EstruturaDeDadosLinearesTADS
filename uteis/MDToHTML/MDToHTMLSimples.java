@@ -38,15 +38,15 @@ public class MDToHTMLSimples {
             boolean emCodigo = false;
             while (scanner.hasNextLine()) {
                 String linha = scanner.nextLine();
-                if (linha.startsWith("-")){
+                if (!emCodigo && linha.startsWith("- ")){
                     linha = linha.replaceFirst("-", "<li>");
                     linha += "</li>";
                 }
-                else if (linha.startsWith("##")){
+                else if (!emCodigo && linha.startsWith("## ")){
                     linha = linha.replaceFirst("##", "<h2>");
                     linha += "</h2>";
                 }
-                else if (linha.startsWith("#")){
+                else if (!emCodigo && linha.startsWith("# ")){
                     linha = linha.replaceFirst("#", "<h1>");
                     linha += "</h1>";
                 }
