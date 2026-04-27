@@ -10,20 +10,27 @@ import java.awt.Desktop;
 
 public class MDToHTMLSimples {
     private String conteudo;
+    private String titulo;
+
+    public void setTitulo(String titulo){
+        this.titulo = titulo;
+    }
 
     private void resetar(){
         this.conteudo = "";
+        this.titulo = "Titulo";
     }
 
     public MDToHTMLSimples(){
         this.resetar();
     }
+
     public MDToHTMLSimples(String caminho){
         this.resetar();
-        this.ler(caminho);
+        this.converterConteudo(caminho);
     }
 
-    private void imprimir() {
+    public void imprimir() {
         try {
             File file = new File("uteis/MDToHTML/saida.html");
             Desktop.getDesktop().browse(file.toURI());
@@ -33,7 +40,22 @@ public class MDToHTMLSimples {
         }
     }
 
-    public void ler(String caminho) {
+    public void gerarHTML(){
+        this.gerarHTML(this.conteudo);
+    }
+
+    private void gerarHTML(String conteudo){
+        try {
+            String html = Files.readString(Path.of("uteis/MDToHTML/base.html"));
+            html = html.replace("{[(conteudo)]}", conteudo);
+            Files.writeString(Path.of("uteis/MDToHTML/saida.html"), html);
+            System.out.println("Arquivo gerado com sucesso!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void converterConteudo(String caminho) {
         try (Scanner scanner = new Scanner(new File(caminho))) {
             boolean emCodigo = false;
             while (scanner.hasNextLine()) {
@@ -61,22 +83,10 @@ public class MDToHTMLSimples {
                         emCodigo = false;
                     }
                 }
-                conteudo += linha + "\n";
+                this.conteudo += linha + "\n";
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-        try {
-            String conteudo = Files.readString(Path.of("uteis/MDToHTML/base.html"));
-            conteudo = conteudo.replace("{[(conteudo)]}", this.conteudo);
-            Files.writeString(Path.of("uteis/MDToHTML/saida.html"), conteudo);
-            System.out.println("Arquivo gerado com sucesso!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-        this.imprimir();
-        this.resetar();
     }
 }
