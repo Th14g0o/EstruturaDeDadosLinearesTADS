@@ -64,7 +64,7 @@ Operações adicionais
 - Nós especiais para início e fim
 
 #### Inserção
-A operação `insertAfter(p, X)`, que retorna um aposição q
+A operação `insertAfter(p, X)`, que retorna uma posição q
 
 **Algoritmo:**
 ```

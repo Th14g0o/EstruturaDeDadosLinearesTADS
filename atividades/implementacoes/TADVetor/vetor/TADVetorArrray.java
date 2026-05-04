@@ -24,7 +24,7 @@ public class TADVetorArrray implements ITADVetor {
         }
     }
 
-        private void deslocarEsquerda(int r){
+    private void deslocarEsquerda(int r){
         for (int i = this.size() - r - 1; i >= r ; i--){
             this.vetor[i] = this.vetor[i + 1];
         }

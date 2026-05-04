@@ -25,11 +25,11 @@ public class TADListaLigada implements ITADLista {
         return null;
 
     }
-    public Object before(Object p) { 
+    public Object before(int p) { 
         return null;
     }
         
-    public Object after(Object p) {  
+    public Object after(int p) {  
         return null;
     }
 
