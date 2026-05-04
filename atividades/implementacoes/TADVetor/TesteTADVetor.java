@@ -30,13 +30,17 @@ public class TesteTADVetor {
             try {
                 int op = sc.nextInt();
                 if (op == 1) return new TADVetorArrray();
-                else if (op == 2) return new TADVetorLigado();
+                else if (op == 2)  {
+                    sc.close();
+                    return new TADVetorLigado();
+                }
                 else  System.out.println("Digite uma opção valida.");
             } 
             catch (Exception e) {
                System.out.println("Digite uma opção valida.");
             }
         }
+        sc.close();
         return new TADVetorArrray();
     }
 
