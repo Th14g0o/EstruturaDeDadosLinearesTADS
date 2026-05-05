@@ -72,7 +72,7 @@ public class TADListaArray implements ITADLista {
 
         if (p == 0) throw new ETADVetor("Não existe nenhum elemento antes.");
 
-        return this.vetor[p];
+        return this.vetor[p - 1];
     }
     public Object after(int p) { 
         this.excecaoVazia();
@@ -81,7 +81,7 @@ public class TADListaArray implements ITADLista {
 
         if (p == this.size() - 1)  throw new ETADVetor("Não existe nenhum elemento depois.");
 
-        return this.vetor[p];
+        return this.vetor[p + 1];
     }
 
     public Object replaceElement(int n, Object o) {
@@ -111,7 +111,7 @@ public class TADListaArray implements ITADLista {
         this.vetor[n] = o;
     } 
     public void insertAfter(int n, Object o) {
-        if (this.size() == 0) insertBefore(n, o);
+        if (this.size() == 0) insertFirst(o);
         else{
             if (n > this.size() || n < 0) throw new ETADVetor("Colocação invalida.");
 
@@ -124,8 +124,6 @@ public class TADListaArray implements ITADLista {
         }     
     }
     public void insertFirst(Object o) {
-        this.excecaoVazia();
-
         if (this.size() + 1 >= this.vetor.length) redimensionar(true);
 
         deslocarDireita(0);
@@ -133,12 +131,10 @@ public class TADListaArray implements ITADLista {
         this.vetor[0] = o;
     }
     public void insertLast(Object o) {
-        this.excecaoVazia();
-
         if (this.size() + 1 >= this.vetor.length) redimensionar(true);
 
-        this.tam++;
         this.vetor[this.size()] = o;
+        this.tam++;
     }
 
     public Object remove(int n) {
