@@ -62,30 +62,22 @@ public class TADVetorLigado implements ITADVetor {
 
     public void insertAtRank(int r, Object o){
         if (r > this.size() || r < 0) throw new ETADVetor("Colocação invalida.");
-    
-        No no = new No(o);
 
-        if (this.size() == 0){
-            this.cabeca.setProximo(no);
-            no.setAnterior(this.cabeca);
-            this.calda.setAnterior(no);
-            no.setProximo(this.calda);
+        No novo = new No(o);
+
+        No noExistente;
+
+        if (r == this.size()) {
+            noExistente = this.calda;
+        } else {
+            noExistente = this.noAtRank(r);
         }
-        else{
-            No noExistente = this.noAtRank(r);
-            if (this.size() == r){
-                no.setProximo(noExistente.getProximo());
-                no.setAnterior(noExistente);
-                noExistente.getProximo().setAnterior(no);
-                noExistente.setProximo(no);
-            } 
-            else{
-                no.setProximo(noExistente);
-                no.setAnterior(noExistente.getAnterior());
-                no.getAnterior().setProximo(no);
-                noExistente.setAnterior(no);   
-            }
-        } 
+
+        novo.setProximo(noExistente);
+        novo.setAnterior(noExistente.getAnterior());
+
+        noExistente.getAnterior().setProximo(novo);
+        noExistente.setAnterior(novo);
         
         this.tam++;
     }

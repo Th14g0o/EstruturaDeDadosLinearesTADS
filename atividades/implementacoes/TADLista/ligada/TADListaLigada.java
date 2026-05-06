@@ -103,52 +103,47 @@ public class TADListaLigada implements ITADLista {
         this.colocacaoInvalidaVazia(n);
         this.colocacaoInvalidaVazia(q);
 
-        No noN = this.noAtRank(n);
-        No noQ = this.noAtRank(q);
+        if (n != q){
+            No noN = this.noAtRank(n);
+            No noQ = this.noAtRank(q);
 
-        No noCopiaN = new No(noN.getValor());
-        noCopiaN.setAnterior(noCopiaN.getAnterior());
-        noCopiaN.setProximo(noCopiaN.getProximo());
-
-        noN.setAnterior(noQ.getAnterior());
-        noN.setProximo(noQ.getProximo());
-        noN.setValor(noQ.getValor());
-
-        noQ.setAnterior(noCopiaN.getAnterior());
-        noQ.setProximo(noCopiaN.getProximo());
-        noQ.setValor(noCopiaN.getValor());
-
+            Object temp = noN.getValor();
+            noN.setValor(noQ.getValor());
+            
+            noQ.setValor(temp);
+        }
     }
     public void insertBefore(int n, Object o) {
         if (n > this.size() || n < 0) throw new ETADLista("Colocação invalida.");
 
         if (this.size() == 0) this.insertFirst(o);
+        else{
+            No no = new No(o);
+            No noExistente = this.noAtRank(n);
+            no.setProximo(noExistente);
+            no.setAnterior(noExistente.getAnterior());
 
-        No no = new No(o);
-        No noExistente = this.noAtRank(n);
-        no.setProximo(noExistente);
-        no.setAnterior(noExistente.getAnterior());
+            noExistente.getAnterior().setProximo(no);
+            noExistente.setAnterior(no);
 
-        noExistente.getAnterior().setProximo(no);
-        noExistente.setAnterior(no);
-
-        
-        this.tam++;
+            this.tam++;
+        }        
     } 
     public void insertAfter(int n, Object o) {
         if (n > this.size() || n < 0) throw new ETADLista("Colocação invalida.");
 
         if (this.size() == 0) this.insertFirst(o);
+        else{
+            No no = new No(o);
+            No noExistente = this.noAtRank(n);
+            no.setAnterior(noExistente);
+            no.setProximo(noExistente.getProximo());
 
-        No no = new No(o);
-        No noExistente = this.noAtRank(n);
-        no.setAnterior(noExistente);
-        no.setProximo(noExistente.getProximo());
+            noExistente.getProximo().setAnterior(no);
+            noExistente.setProximo(no);
 
-        noExistente.getProximo().setAnterior(no);
-        noExistente.setProximo(no);
-
-        this.tam++;
+            this.tam++;
+        }        
     }
     public void insertFirst(Object o) {
         No no = new No(o);
@@ -173,9 +168,7 @@ public class TADListaLigada implements ITADLista {
     public Object remove(int n) {
         this.colocacaoInvalidaVazia(n);
 
-        
-
-        No no = this.noAtRank(n);
+        No no = this.noAtRank(n);;
         no.getAnterior().setProximo(no.getProximo());
         no.getProximo().setAnterior(no.getAnterior());
 

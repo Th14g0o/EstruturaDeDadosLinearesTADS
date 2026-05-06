@@ -7,11 +7,11 @@ public interface ITADLista {
     public boolean isLast(Object n);
     public Object first(); 
     public Object last(); 
-    public Object before(int p); // parametros certos?
-    public Object after(int p); // parametros certos?
+    public Object before(int p); 
+    public Object after(int p); 
 
     public Object replaceElement(int n, Object o); 
-    public void swapElements(int n, int q); // parametros certos?
+    public void swapElements(int n, int q); 
     public void insertBefore(int n, Object o); 
     public void insertAfter(int n, Object o); 
     public void insertFirst(Object o); 
