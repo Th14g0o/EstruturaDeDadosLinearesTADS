@@ -14,7 +14,7 @@ public class TADVetorLigado implements ITADVetor {
         this.calda = new No();
 
         this.cabeca.setProximo(this.calda);
-        this.calda.setProximo(this.cabeca);
+        this.calda.setAnterior(this.cabeca);
     }
 
     private No FimParaInicio(int r){

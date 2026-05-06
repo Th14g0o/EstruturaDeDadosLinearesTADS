@@ -1,7 +1,7 @@
 package atividades.implementacoes.TADLista.vetor;
 
+import atividades.implementacoes.TADLista.ETADLista;
 import atividades.implementacoes.TADLista.ITADLista;
-import atividades.implementacoes.TADVetor.ETADVetor;
 
 public class TADListaArray implements ITADLista {
     private Object[] vetor;
@@ -16,10 +16,10 @@ public class TADListaArray implements ITADLista {
     }
 
     private void colocacaoInvalidaVazia(int r){
-        if (r >= this.size() || r < 0) throw new ETADVetor("Colocação invalida.");
+        if (r >= this.size() || r < 0) throw new ETADLista("Colocação invalida.");
     }
     private void excecaoVazia(){
-        if (this.isEmpty())  throw new ETADVetor("Não existe nenhum elemento.");
+        if (this.isEmpty())  throw new ETADLista("Não existe nenhum elemento.");
     }
 
     private void redimensionar(boolean aumentar) {
@@ -70,7 +70,7 @@ public class TADListaArray implements ITADLista {
 
         this.colocacaoInvalidaVazia(p);
 
-        if (p == 0) throw new ETADVetor("Não existe nenhum elemento antes.");
+        if (p == 0) throw new ETADLista("Não existe nenhum elemento antes.");
 
         return this.vetor[p - 1];
     }
@@ -79,7 +79,7 @@ public class TADListaArray implements ITADLista {
 
         this.colocacaoInvalidaVazia(p);
 
-        if (p == this.size() - 1)  throw new ETADVetor("Não existe nenhum elemento depois.");
+        if (p == this.size() - 1)  throw new ETADLista("Não existe nenhum elemento depois.");
 
         return this.vetor[p + 1];
     }
@@ -101,7 +101,7 @@ public class TADListaArray implements ITADLista {
     
     }
     public void insertBefore(int n, Object o) {
-        if (n > this.size() || n < 0) throw new ETADVetor("Colocação invalida.");
+        if (n > this.size() || n < 0) throw new ETADLista("Colocação invalida.");
 
         if (this.size() + 1 >= this.vetor.length) redimensionar(true);
         
@@ -113,7 +113,7 @@ public class TADListaArray implements ITADLista {
     public void insertAfter(int n, Object o) {
         if (this.size() == 0) insertFirst(o);
         else{
-            if (n > this.size() || n < 0) throw new ETADVetor("Colocação invalida.");
+            if (n > this.size() || n < 0) throw new ETADLista("Colocação invalida.");
 
             if (this.size() + 1 >= this.vetor.length) redimensionar(true);
 
