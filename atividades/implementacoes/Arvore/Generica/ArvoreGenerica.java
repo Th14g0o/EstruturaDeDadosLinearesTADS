@@ -1,10 +1,9 @@
 package atividades.implementacoes.Arvore.Generica;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
-import atividades.implementacoes.Arvore.No;
-
-public class ArvoreGenerica {
+public class ArvoreGenerica implements IArvore {
 	No raiz;
 	int tamanho;
 
@@ -21,7 +20,7 @@ public class ArvoreGenerica {
 	{
 		return (v.parent());
 	}
-	public Iterator children(No v)
+	public Iterator<No> children(No v)
 	{
 		return v.children();
 	}
@@ -56,7 +55,9 @@ public class ArvoreGenerica {
 	}
 	public void swapElements(No v, No w)
 	{
-
+		Object o = v.element();
+		v.setElement(w.element());
+		w.setElement(o);
 		
 	}
 	public int depth(No v)
@@ -76,24 +77,41 @@ public class ArvoreGenerica {
 		int altura = 0;
 		return altura;
 	}
-	public Iterator elements()
-	{
-		return null;
+
+	private void adicionarElementos(No no, ArrayList<Object> elementos) {
+		elementos.add(no.element());
+		Iterator<No> it = no.children();
+		while (it.hasNext()) {
+			adicionarElementos(it.next(), elementos);
+		}
 	}
-	public Iterator Nos()
+	public Iterator<Object> elements() {
+		if (isEmpty()) throw new RuntimeException("Árvore vazia");
+		ArrayList<Object> elementos = new ArrayList<Object>();
+		adicionarElementos(raiz, elementos);
+		return elementos.iterator();
+	}
+
+	public Iterator<No> Nos()
 	{
 		return null;
 	}
 	public int size()
 	{
-		return 0;
+		return tamanho - 1;
 	}
 	public boolean isEmpty()
 	{
-		return false;
+		return tamanho == 1;
 	}
 	public Object replace(No v, Object o)
 	{
-		return null;
+		Object temp = v.element();
+		v.setElement(o);
+		return temp;
+	}
+
+	public void insert(Object o){
+		
 	}
 }

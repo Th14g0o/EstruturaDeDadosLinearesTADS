@@ -1,4 +1,4 @@
-package atividades.implementacoes.Arvore;
+package atividades.implementacoes.Arvore.Generica;
 
 import java.util.Iterator;
 
@@ -26,6 +26,8 @@ public interface IArvore {
 	/** Testa se um No � a raiz */
 	boolean isRoot(No v) throws Exception;
 
+	/** Adiciona um No ao ?*/
+	void insert(Object o);
 	/** Adiciona um filho a um No */
 	void addChild(No v, Object o);
 	/** Remove um No*  Só pode remover Nos externos e que tenham um pai (não seja raiz)*/
@@ -34,7 +36,6 @@ public interface IArvore {
 	void swapElements(No v, No w);
 	/** Retorna a profundidade de um No */
 	int depth(No v);
-	int profundidade(No v);
 	/** Retorna a altura da Árvore */
 	int height();	
 }

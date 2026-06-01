@@ -6,7 +6,7 @@ import java.util.Iterator;
 public class No {
     private Object o;
     private No pai;
-    private ArrayList filhos = new ArrayList();
+    private ArrayList<No> filhos = new ArrayList<No>();
     public No(No pai, Object o)
     {
         this.pai = pai;
@@ -36,7 +36,7 @@ public class No {
     {
         return filhos.size();
     }
-    public Iterator children()
+    public Iterator<No> children()
     {
         return filhos.iterator();
     }

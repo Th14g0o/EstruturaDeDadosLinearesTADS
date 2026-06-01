@@ -6,6 +6,7 @@ import java.util.Iterator;
 public class No {
     private Object o;
     private No pai;
+    private ArrayList<No> filhos = new ArrayList<No>();
     public No(No pai, Object o)
     {
         this.pai = pai;
