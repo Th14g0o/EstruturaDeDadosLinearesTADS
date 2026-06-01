@@ -1,4 +1,4 @@
-package atividades.implementacoes.Arvore;
+package atividades.implementacoes.Arvore.Generica;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,6 +6,7 @@ import java.util.Iterator;
 public class No {
     private Object o;
     private No pai;
+    private ArrayList filhos = new ArrayList();
     public No(No pai, Object o)
     {
         this.pai = pai;

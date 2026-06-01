@@ -1,8 +1,11 @@
+package atividades.implementacoes.Arvore.ArvoreSimplesProfessor;
+
+
 import java.util.Iterator;
 import java.util.ArrayList;
 public class ArvoreSimples 
 {
-	//Atributos da árvore
+	//Atributos da ï¿½rvore
 	No raiz;
 	int tamanho;
 	//Construtor
@@ -11,7 +14,7 @@ public class ArvoreSimples
 		raiz = new No(null, o);
 		tamanho = 1;
 	}
-	/** Retorna a raiz da árvore */
+	/** Retorna a raiz da ï¿½rvore */
 	public No root()
 	{
 		return raiz;
@@ -27,17 +30,17 @@ public class ArvoreSimples
 	{
 		return v.children();
 	}
-	/** Testa se um No é interno */
+	/** Testa se um No ï¿½ interno */
 	public boolean isInternal(No v)
 	{
 		return (v.childrenNumber() > 0);
 	}
-	/** Testa se um No é externo*/
+	/** Testa se um No ï¿½ externo*/
 	public boolean isExternal(No v)
 	{
 		return (v.childrenNumber() == 0);
 	}
-	/** Testa se um No é a raiz */
+	/** Testa se um No ï¿½ a raiz */
 	public boolean isRoot(No v)
 	{
 		return v == raiz;
@@ -50,27 +53,27 @@ public class ArvoreSimples
 		tamanho++;
 	}
 	/** Remove um No
-	 *  Só pode remover Nos externos e que tenham um pai (não seja raiz)
+	 *  Sï¿½ pode remover Nos externos e que tenham um pai (nï¿½o seja raiz)
 	*/
-	public Object remove(No v) throws InvalidNoException
+	public Object remove(No v) throws Exception
 	{
 		No pai = v.parent();
 		if (pai != null || isExternal(v))
 			pai.removeChild(v);
 		else
-			throw new InvalidNoException();
+			throw new Exception();
 		Object o = v.element();
 		tamanho--;
 		return o;
 	}
-	/** Troca dois elementos de posição */
+	/** Troca dois elementos de posiï¿½ï¿½o */
 	public void swapElements(No v, No w)
 	{
-		/*Método que serve de exercício
-		 * Este método deverá fazer com que o objeto
-		 * que estava na posição v fique na posição w
-		 * e fazer com que o objeto que estava na posição w
-		 * fique na posição v
+		/*Mï¿½todo que serve de exercï¿½cio
+		 * Este mï¿½todo deverï¿½ fazer com que o objeto
+		 * que estava na posiï¿½ï¿½o v fique na posiï¿½ï¿½o w
+		 * e fazer com que o objeto que estava na posiï¿½ï¿½o w
+		 * fique na posiï¿½ï¿½o v
 		 */  
 		
 	}
@@ -87,33 +90,33 @@ public class ArvoreSimples
 		else
 			return 1 + profundidade(v.parent());
 	}
-	/** Retorna a altura da árvore */
+	/** Retorna a altura da ï¿½rvore */
 	public int height()
 	{
-		// Método que serve de exercício
+		// Mï¿½todo que serve de exercï¿½cio
 		int altura = 0;
 		return altura;
 	}
-	/** Retorna um iterator com os elementos armazenados na árvore */
+	/** Retorna um iterator com os elementos armazenados na ï¿½rvore */
 	public Iterator elements()
 	{
-		// Método que serve de exercício
+		// Mï¿½todo que serve de exercï¿½cio
 		return null;
 	}
-	/** Retorna um iterator com as posições (Nos) da árvore */
+	/** Retorna um iterator com as posiï¿½ï¿½es (Nos) da ï¿½rvore */
 	public Iterator Nos()
 	{
-		// Método que serve de exercício
+		// Mï¿½todo que serve de exercï¿½cio
 		return null;
 	}
-	/** Retorna o número de Nos da árvore
+	/** Retorna o nï¿½mero de Nos da ï¿½rvore
 	 */
 	public int size()
 	{
-	 // Método que serve de exercício
+	 // Mï¿½todo que serve de exercï¿½cio
 		return 0;
 	}
-	/** Retorna se a ávore está vazia. Sempre vai ser falso, pois não permitimos remover a raiz
+	/** Retorna se a ï¿½vore estï¿½ vazia. Sempre vai ser falso, pois nï¿½o permitimos remover a raiz
 	 */
 	public boolean isEmpty()
 	{
@@ -121,10 +124,10 @@ public class ArvoreSimples
 	}
 	public Object replace(No v, Object o)
 	{
-	 // Método que serve de exercício
+	 // Mï¿½todo que serve de exercï¿½cio
 		return null;
 	}
-	/* Início da classe aninhada para armazenar o No*/
+	/* Inï¿½cio da classe aninhada para armazenar o No*/
 	public class No 
 	{
 		private Object o;
