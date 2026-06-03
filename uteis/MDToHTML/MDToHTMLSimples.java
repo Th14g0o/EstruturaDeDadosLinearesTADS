@@ -65,11 +65,11 @@ public class MDToHTMLSimples {
                     linha += "</li>";
                 }
                 else if (!emCodigo && linha.startsWith("## ")){
-                    linha = linha.replaceFirst("##", "<h2>");
+                    linha = linha.replaceFirst("## ", "<h2>");
                     linha += "</h2>";
                 }
                 else if (!emCodigo && linha.startsWith("# ")){
-                    linha = linha.replaceFirst("#", "<h1>");
+                    linha = linha.replaceFirst("# ", "<h1>");
                     linha += "</h1>";
                 }
                 else if (linha.startsWith("```")){
@@ -77,12 +77,17 @@ public class MDToHTMLSimples {
                         String linguagem = linha.substring(3).trim();
                         if (linguagem.isEmpty()) linguagem = "plaintext";
                         linha = "<pre><code class=\"language-" + linguagem + "\">";
+                        
                         emCodigo = true;
                     } else {
                         linha = "</code></pre>";
                         emCodigo = false;
                     }
                 }
+                else if (emCodigo) 
+                    linha = linha.replace("&", "&amp;")
+                                 .replace("<", "&lt;")
+                                 .replace(">", "&gt;");
                 this.conteudo += linha + "\n";
             }
         } catch (FileNotFoundException e) {

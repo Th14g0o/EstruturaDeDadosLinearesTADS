@@ -6,7 +6,6 @@ import java.util.Iterator;
 public class ArvoreGenerica implements IArvore {
 	No raiz;
 	int tamanho;
-
 	
 	public ArvoreGenerica(Object o)
 	{
@@ -20,6 +19,8 @@ public class ArvoreGenerica implements IArvore {
 	}
 	public No parent(No v)
 	{
+		if (v == raiz)
+			throw new RuntimeException("A raiz não tem pai");
 		return (v.parent());
 	}
 	public Iterator<No> children(No v)
@@ -47,7 +48,7 @@ public class ArvoreGenerica implements IArvore {
 	public Object remove(No v) throws Exception
 	{
 		No pai = v.parent();
-		if (pai != null || isExternal(v))
+		if (pai != null && isExternal(v))
 			pai.removeChild(v);
 		else
 			throw new Exception();
@@ -87,7 +88,6 @@ public class ArvoreGenerica implements IArvore {
 			while (filhos.hasNext()) {
 				No w = filhos.next();
 				h = h > heightCalc(w) ? h :  heightCalc(w);
-				filhos.next();
 			}
 			return 1 + h;
 		}
@@ -124,11 +124,11 @@ public class ArvoreGenerica implements IArvore {
 
 	public int size()
 	{
-		return tamanho - 1;
+		return tamanho;
 	}
 	public boolean isEmpty()
 	{
-		return tamanho == 1;
+		return tamanho == 0;
 	}
 	public Object replace(No v, Object o)
 	{
@@ -150,7 +150,7 @@ public class ArvoreGenerica implements IArvore {
 		Iterator<No> filhos = v.children();
 		while (filhos.hasNext()){
 			No w = filhos.next();
-			preOrder(w);
+			posOrder(w);
 		}
 		System.out.println(v);
 	}
