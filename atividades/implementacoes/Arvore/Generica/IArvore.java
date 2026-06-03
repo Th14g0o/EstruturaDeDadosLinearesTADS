@@ -8,26 +8,24 @@ public interface IArvore {
 	/** Retorna se a Arvore estA vazia. Sempre vai ser falso, pois não permitimos remover a raiz */
 	boolean isEmpty();
 	/** Retorna um iterator com os elementos armazenados na árvore */
-	Iterator elements();
+	Iterator<Object> elements();
 	/** Retorna um iterator com as posições (Nos) da árvore */
-	Iterator Nos();
+	Iterator<No> Nos();
 	// Substitui 
 	Object replace(No v, Object o) throws Exception;
-	/** Retorna a raiz da �rvore */
+	/** Retorna a raiz da Árvore */
 	No root() throws Exception;
 	/** Retorna o No pai de um No */
 	No parent(No v) throws Exception;
 	/** retorna os filhos de um No */
-	Iterator children(No v) throws Exception;
-	/** Testa se um No � interno */
+	Iterator<No> children(No v) throws Exception;
+	/** Testa se um No é interno */
 	boolean isInternal(No v) throws Exception;
-	/** Testa se um No � externo*/
+	/** Testa se um No é externo*/
 	boolean isExternal(No v) throws Exception;
-	/** Testa se um No � a raiz */
+	/** Testa se um No é a raiz */
 	boolean isRoot(No v) throws Exception;
 
-	/** Adiciona um No ao ?*/
-	void insert(Object o);
 	/** Adiciona um filho a um No */
 	void addChild(No v, Object o);
 	/** Remove um No*  Só pode remover Nos externos e que tenham um pai (não seja raiz)*/
@@ -38,4 +36,8 @@ public interface IArvore {
 	int depth(No v);
 	/** Retorna a altura da Árvore */
 	int height();	
+	/** Printa Instancia No */ 
+	void preOrder(No v);
+	/** Printa Instancia No */ 
+	void posOrder(No v);
 }

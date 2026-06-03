@@ -7,11 +7,13 @@ public class ArvoreGenerica implements IArvore {
 	No raiz;
 	int tamanho;
 
+	
 	public ArvoreGenerica(Object o)
 	{
 		raiz = new No(null, o);
 		tamanho = 1;
 	}
+	
 	public No root()
 	{
 		return raiz;
@@ -58,7 +60,6 @@ public class ArvoreGenerica implements IArvore {
 		Object o = v.element();
 		v.setElement(w.element());
 		w.setElement(o);
-		
 	}
 	public int depth(No v)
 	{
@@ -74,15 +75,29 @@ public class ArvoreGenerica implements IArvore {
 	}
 	public int height()
 	{
-		int altura = 0;
-		return altura;
+		return heightCalc(raiz);
+	}
+
+	private int heightCalc(No v){
+		if (isExternal(v))
+			return 0;
+		else{
+			int h = 0;
+			Iterator<No> filhos = children(v);
+			while (filhos.hasNext()) {
+				No w = filhos.next();
+				h = h > heightCalc(w) ? h :  heightCalc(w);
+				filhos.next();
+			}
+			return 1 + h;
+		}
 	}
 
 	private void adicionarElementos(No no, ArrayList<Object> elementos) {
 		elementos.add(no.element());
-		Iterator<No> it = no.children();
-		while (it.hasNext()) {
-			adicionarElementos(it.next(), elementos);
+		Iterator<No> filhos = no.children();
+		while (filhos.hasNext()) {
+			adicionarElementos(filhos.next(), elementos);
 		}
 	}
 	public Iterator<Object> elements() {
@@ -92,10 +107,21 @@ public class ArvoreGenerica implements IArvore {
 		return elementos.iterator();
 	}
 
+	private void adicionarNos(No no, ArrayList<No> nos) {
+		nos.add(no);
+		Iterator<No> filhos = no.children();
+		while (filhos.hasNext()) {
+			adicionarNos(filhos.next(), nos);
+		}
+	}
 	public Iterator<No> Nos()
 	{
-		return null;
+		if (isEmpty()) throw new RuntimeException("Árvore vazia");
+		ArrayList<No> nos = new ArrayList<No>();
+		adicionarNos(raiz, nos);
+		return nos.iterator();
 	}
+
 	public int size()
 	{
 		return tamanho - 1;
@@ -111,7 +137,21 @@ public class ArvoreGenerica implements IArvore {
 		return temp;
 	}
 
-	public void insert(Object o){
-		
+	public void preOrder(No v){
+		System.out.println(v);
+		Iterator<No> filhos = v.children();
+		while (filhos.hasNext()){
+			No w = filhos.next();
+			preOrder(w);
+		}
+	}
+
+	public void posOrder(No v){
+		Iterator<No> filhos = v.children();
+		while (filhos.hasNext()){
+			No w = filhos.next();
+			preOrder(w);
+		}
+		System.out.println(v);
 	}
 }

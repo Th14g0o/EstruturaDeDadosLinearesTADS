@@ -40,4 +40,8 @@ public class No {
     {
         return filhos.iterator();
     }
+    @Override
+    public String toString(){
+        return String.format("Nó: %d", element());
+    }
 }
