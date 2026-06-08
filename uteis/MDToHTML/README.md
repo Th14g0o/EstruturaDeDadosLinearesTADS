@@ -4,10 +4,12 @@ Converte MD para HTML e permite imprimir o conteudo com um botão no final para 
 
 ## Regras
 
-- `#` vira `<h1>`
-- `##` vira `<h2>`
-- `-` vira `<li>`
-- Blocos de código com ``` são suportados. (pelo menos para java)
+- `# ` vira `<h1>`
+- `## ` vira `<h2>`
+- `### ` vira `<h3>`
+- `- ` vira `<li>`
+- `> ` vira uma observação estilizada
+- Somente blocos de código com ``` são suportados. (pelo menos para java)
 
 ---
 

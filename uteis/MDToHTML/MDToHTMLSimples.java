@@ -48,6 +48,7 @@ public class MDToHTMLSimples {
         try {
             String html = Files.readString(Path.of("uteis/MDToHTML/base.html"));
             html = html.replace("{[(conteudo)]}", conteudo);
+            html = html.replace("{[(titulo)]}", this.titulo);
             Files.writeString(Path.of("uteis/MDToHTML/saida.html"), html);
             System.out.println("Arquivo gerado com sucesso!");
         } catch (IOException e) {
@@ -60,9 +61,22 @@ public class MDToHTMLSimples {
             boolean emCodigo = false;
             while (scanner.hasNextLine()) {
                 String linha = scanner.nextLine();
+                if (!emCodigo && linha.startsWith("> ")){
+                    linha = linha.replaceFirst(
+                        ">", 
+                        "<div class=\"observacao\">\n" +
+                        "    <div class=\"titulo\">Observação</div>\n" +
+                        "    <p>\n" 
+                    );
+                    linha += "    </p>\n</div>";
+                }
                 if (!emCodigo && linha.startsWith("- ")){
                     linha = linha.replaceFirst("-", "<li>");
                     linha += "</li>";
+                }
+                else if (!emCodigo && linha.startsWith("### ")){
+                    linha = linha.replaceFirst("### ", "<h3>");
+                    linha += "</h3>";
                 }
                 else if (!emCodigo && linha.startsWith("## ")){
                     linha = linha.replaceFirst("## ", "<h2>");
@@ -80,7 +94,7 @@ public class MDToHTMLSimples {
                         
                         emCodigo = true;
                     } else {
-                        linha = "</code></pre>";
+                        linha = "\n</code></pre>";
                         emCodigo = false;
                     }
                 }

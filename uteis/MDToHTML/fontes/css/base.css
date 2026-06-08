@@ -1,3 +1,7 @@
+*{
+    font-family: 'Arial', monospace, 'Courier New', Courier;
+    text-wrap: wrap;
+}
 
 body{
     background-color: #000011;
@@ -10,9 +14,8 @@ h1{
     text-align: center;
 }
 
-h1, h2, li, p, input{
+pre, code, span{
     font-family: monospace, 'Courier New', Courier;
-    text-wrap: wrap;
 }
 
 p{
@@ -52,6 +55,7 @@ button {
     border-radius: 6px;
     transition: 0.2s;
     font-size: 30px;
+    margin-top: 20px;
 }
 /* hover simples */
 button:hover {
@@ -63,8 +67,39 @@ button:active {
     transform: scale(0.97);
 }
 
+/*  */
+
+/* Caixa de observações */
+.observacao {
+    background: #1e1e1e2e;
+    border-left: 4px solid #31b62c;
+    color: #e0e0e0;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Título */
+.observacao .titulo {
+    color: #31b62c;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Texto */
+.observacao p {
+    margin: 0;
+    line-height: 1.6;
+    text-align: left;
+}
+
+/*  */
+
 @media print {
     button {
         display: none;
     }
 }
+
