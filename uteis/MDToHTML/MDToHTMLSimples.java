@@ -3,6 +3,8 @@ package uteis.MDToHTML;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
@@ -30,9 +32,23 @@ public class MDToHTMLSimples {
         this.converterConteudo(caminho);
     }
 
+    public static File getPastaDoPrograma() {
+        try {
+            return new File(
+                MDToHTMLSimples.class
+                    .getProtectionDomain()
+                    .getCodeSource()
+                    .getLocation()
+                    .toURI()
+            ).getParentFile();
+        } catch (Exception e) {
+            return new File(".");
+        }
+    }
+
     public void imprimir() {
         try {
-            File file = new File("uteis/MDToHTML/saida.html");
+            File file = new File(getPastaDoPrograma(), "saida.html");
             Desktop.getDesktop().browse(file.toURI());
             System.out.println("Arquivo aberto no navegador para impressão.");
         } catch (IOException e) {
@@ -44,14 +60,22 @@ public class MDToHTMLSimples {
         this.gerarHTML(this.conteudo);
     }
 
-    private void gerarHTML(String conteudo){
+   public void gerarHTML(String conteudo) {
         try {
-            String html = Files.readString(Path.of("uteis/MDToHTML/base.html"));
+            File base = new File(getPastaDoPrograma(), "base.html");
+
+            String html = Files.readString(base.toPath(), StandardCharsets.UTF_8);
+
             html = html.replace("{[(conteudo)]}", conteudo);
             html = html.replace("{[(titulo)]}", this.titulo);
-            Files.writeString(Path.of("uteis/MDToHTML/saida.html"), html);
-            System.out.println("Arquivo gerado com sucesso!");
-        } catch (IOException e) {
+
+            File saida = new File(getPastaDoPrograma(),"saida.html");
+
+            Files.writeString(saida.toPath(), html);
+
+            System.out.println("Arquivo gerado em: " +saida.getAbsolutePath());
+        } 
+        catch (IOException e) {
             e.printStackTrace();
         }
     }
