@@ -1,4 +1,4 @@
-# Implementação HEAP  com Array
+# Implementação HEAP com Array
 
 ## Implementar uma Fila de Prioridade usando um HEAP implementado através de um array 
 

@@ -1,4 +1,4 @@
-package atividades.implementacoes.Arvore.Heap;
+package atividades.implementacoes.Arvore.Heap.Array;
 
 public class Main {
     public static void main(String[] args) {

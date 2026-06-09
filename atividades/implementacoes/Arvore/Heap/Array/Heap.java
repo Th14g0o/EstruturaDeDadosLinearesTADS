@@ -1,9 +1,4 @@
-# Implementação HEAP com Array
-
-## Classe Heap
-
-```java
-package atividades.implementacoes.Arvore.Heap;
+package atividades.implementacoes.Arvore.Heap.Array;
 
 public class Heap {
     private int n[];
@@ -89,6 +84,12 @@ public class Heap {
     public int size(){
         return i - 1;
     }
-}
 
-```
+    @Override
+    public String toString(){
+        String elementos = "";
+        for (int i = 1; i < this.i; i++) 
+            elementos += n[i] + (i == this.i - 1 ? "" : " ");
+        return elementos;
+    }
+}
