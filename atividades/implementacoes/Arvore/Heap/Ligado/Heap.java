@@ -1,5 +1,6 @@
 package atividades.implementacoes.Arvore.Heap.Ligado;
 
+import java.util.ArrayList;
 
 public class Heap {
     private No raiz;
@@ -106,5 +107,26 @@ public class Heap {
 
         downHeap(raiz);
         return removido;
+    }
+
+    private String adicionarElementos(No no) {
+        String elementos = "";
+        ArrayList<No> fila = new ArrayList<>();
+
+        fila.add(raiz);
+
+        for (int i = 0; i < fila.size(); i++) {
+            No atual = fila.get(i);
+            elementos += atual.elemento + " ";
+            if (atual.esquerdo != null)
+                fila.add(atual.esquerdo);
+            if (atual.direito != null)
+                fila.add(atual.direito);
+        }
+        return elementos;
+    }
+    @Override
+    public String toString() {
+        return adicionarElementos(raiz);
     }
 }

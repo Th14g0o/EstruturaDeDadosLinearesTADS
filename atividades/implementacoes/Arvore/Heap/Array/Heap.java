@@ -8,7 +8,8 @@ public class Heap {
     public Heap(int t){
         capacidade = t + 1;
         n = new int[capacidade];
-        i = 1;
+        n[1] = t;
+        i = 2;
     }
 
     public void upHeap(){

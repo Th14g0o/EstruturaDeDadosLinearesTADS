@@ -3,7 +3,6 @@ package atividades.implementacoes.Arvore.Heap.Array;
 public class Main {
     public static void main(String[] args) {
         Heap heap = new Heap(5);
-
         System.out.println("--------------------");
         System.out.println("Inserindo:");
 

@@ -9,4 +9,9 @@ public class No {
     public No(int elemento) {
         this.elemento = elemento;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(elemento);
+    }
 }
