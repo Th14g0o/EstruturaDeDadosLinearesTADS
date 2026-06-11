@@ -86,6 +86,10 @@ public class Heap {
         return i - 1;
     }
 
+    public int min(){
+        return n[1];
+    }
+
     @Override
     public String toString(){
         String elementos = "";

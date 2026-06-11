@@ -109,6 +109,10 @@ public class Heap {
         return removido;
     }
 
+    public int min(){
+        return raiz.elemento;
+    }
+
     private String adicionarElementos(No no) {
         String elementos = "";
         ArrayList<No> fila = new ArrayList<>();

@@ -20,6 +20,11 @@ public class Main {
 
         heap.insert(8);
         System.out.println(heap);
+
+        System.out.println("--------------------");
+        System.out.println("min:");
+        System.out.println(heap.min());
+
         
         System.out.println("--------------------");
         System.out.println("Removendo:");

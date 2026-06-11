@@ -3,10 +3,8 @@ package uteis.MDToHTML;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Scanner;
 import java.awt.Desktop;
 
