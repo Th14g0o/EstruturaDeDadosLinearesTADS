@@ -1,130 +1,201 @@
 package atividades.implementacoes.Arvore.PesquisaBinaria;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 
 public class ArvorePesquisaBinaria {
+
     private No raiz;
-    private int size;
+    private int tamanho;
 
-    public ArvorePesquisaBinaria(int o){
-        this.raiz = new No(null, null, null, o);
-        this.size = 1;
+    public boolean isEmpty() {
+        return raiz == null;
     }
 
-    public int size(){
-        return this.size;
+    public int size() {
+        return tamanho;
     }
 
-    public boolean isEmpty(){
-        if (this.size == 0){ 
-            return true; 
-        } 
-        return false;
+    public No root() {
+        return raiz;
     }
 
-    public int depht(No v){
-        if (isRoot(v)){
-            return 0;
+    // =========================
+    // INSERÇÃO
+    // =========================
+    public void inserir(int valor) {
+        raiz = inserirRec(raiz, valor);
+    }
+
+    private No inserirRec(No atual, int valor) {
+
+        if (atual == null) {
+            tamanho++;
+            return new No(valor);
         }
-        return 1+depht(parent(v));
+
+        if (valor < atual.valor) {
+            atual.esquerdo = inserirRec(atual.esquerdo, valor);
+        } else if (valor > atual.valor) {
+            atual.direito = inserirRec(atual.direito, valor);
+        }
+
+        return atual;
     }
 
-    public int heigth(No r, No v){
-        if (ArvorePesquisaBinaria.isExternal(v)){
-            return 0;
+    // =========================
+    // BUSCA
+    // =========================
+    public boolean buscar(int valor) {
+        return buscarRec(raiz, valor);
+    }
+
+    private boolean buscarRec(No atual, int valor) {
+
+        if (atual == null)
+            return false;
+
+        if (valor == atual.valor)
+            return true;
+
+        if (valor < atual.valor)
+            return buscarRec(atual.esquerdo, valor);
+
+        return buscarRec(atual.direito, valor);
+    }
+
+    // =========================
+    // REMOÇÃO
+    // =========================
+    public void remover(int valor) {
+        raiz = removerRec(raiz, valor);
+    }
+
+    private No removerRec(No atual, int valor) {
+
+        if (atual == null)
+            return null;
+
+        if (valor < atual.valor) {
+            atual.esquerdo = removerRec(atual.esquerdo, valor);
         }
-        else{
-            int h = 0;
-            Iterator<No> f = ArvorePesquisaBinaria.children(v);
-            while (f.hasNext()){
-                No w = f.next();
-                h = Math.max(h, heigth(this.raiz, w));
+        else if (valor > atual.valor) {
+            atual.direito = removerRec(atual.direito, valor);
+        }
+        else {
+
+            // folha
+            if (atual.esquerdo == null && atual.direito == null) {
+                tamanho--;
+                return null;
             }
-            return 1+h;
+
+            // um filho
+            if (atual.esquerdo == null) {
+                tamanho--;
+                return atual.direito;
+            }
+
+            if (atual.direito == null) {
+                tamanho--;
+                return atual.esquerdo;
+            }
+
+            // dois filhos
+            No sucessor = menor(atual.direito);
+            atual.valor = sucessor.valor;
+            atual.direito = removerRec(atual.direito, sucessor.valor);
+        }
+
+        return atual;
+    }
+
+    private No menor(No no) {
+        while (no.esquerdo != null) {
+            no = no.esquerdo;
+        }
+        return no;
+    }
+
+    // =========================
+    // ALTURA
+    // =========================
+    public int altura() {
+        return alturaRec(raiz);
+    }
+
+    private int alturaRec(No no) {
+
+        if (no == null)
+            return -1;
+
+        return 1 + Math.max(
+                alturaRec(no.esquerdo),
+                alturaRec(no.direito)
+        );
+    }
+
+    // =========================
+    // PERCURSOS
+    // =========================
+    public void preOrdem() {
+        preOrdemRec(raiz);
+        System.out.println();
+    }
+
+    private void preOrdemRec(No no) {
+        if (no != null) {
+            System.out.print(no.valor + " ");
+            preOrdemRec(no.esquerdo);
+            preOrdemRec(no.direito);
         }
     }
 
-    public static Iterator<No> children(No v){
-        List<No> filhos = new ArrayList<>();
-        if (v.getFilhoEsquerdo() != null){
-            filhos.add(v.getFilhoEsquerdo());
-        }
-        if (v.getFilhoDireito() != null){
-            filhos.add(v.getFilhoDireito());
-        }
-        return filhos.iterator();
+    public void emOrdem() {
+        emOrdemRec(raiz);
+        System.out.println();
     }
 
-    public static boolean isExternal(No v){
-        if (v.getFilhoEsquerdo() == null && v.getFilhoDireito() == null){
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean isInternal(No v){
-        if (v.getFilhoEsquerdo() != null || v.getFilhoDireito() != null){
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isRoot(No v){
-        if (v.getPai() == null){
-            return true;
-        }
-        return false;
-    }
-
-    public No root(){
-        return this.raiz;
-    }
-
-    public static No leftChild(No v){
-        return v.getFilhoEsquerdo();
-    }
-
-    public static No rightChild(No v){
-        return v.getFilhoDireito();
-    }
-
-    public No parent(No v){
-        return v.getPai();
-    }
-
-    public void inOrder(No v){
-        if (isInternal(v)){
-            inOrder(leftChild(v));
-        } visite(v);
-        if (isInternal(v)){
-            inOrder(rightChild(v));
-        } visite(v);
-    }
-
-    public void visite(No v){
-        // método que vai imprimir a árvore no console
-    }
-
-
-    public No search(int k, No v){
-        if (ArvorePesquisaBinaria.isExternal(v)){
-            return v;
-        }
-        if (k < v.getElemento()){
-            return search(k, ArvorePesquisaBinaria.leftChild(v));
-        }
-        else if (k == v.getElemento()){
-            return v;
-        }
-        else{
-            return search(k, ArvorePesquisaBinaria.rightChild(v));
+    private void emOrdemRec(No no) {
+        if (no != null) {
+            emOrdemRec(no.esquerdo);
+            System.out.print(no.valor + " ");
+            emOrdemRec(no.direito);
         }
     }
 
-    public void insert(int k, No v){
-        // tentar usar search
-    } 
+    public void posOrdem() {
+        posOrdemRec(raiz);
+        System.out.println();
+    }
+
+    private void posOrdemRec(No no) {
+        if (no != null) {
+            posOrdemRec(no.esquerdo);
+            posOrdemRec(no.direito);
+            System.out.print(no.valor + " ");
+        }
+    }
+
+    // =========================
+    // MOSTRAR ÁRVORE
+    // =========================
+    public void mostrar() {
+        mostrarRec(raiz, 0);
+    }
+
+    private void mostrarRec(No no, int nivel) {
+
+        if (no == null)
+            return;
+
+        mostrarRec(no.direito, nivel + 1);
+
+        for (int i = 0; i < nivel; i++) {
+            System.out.print("        ");
+        }
+
+        System.out.println(no.valor);
+
+        mostrarRec(no.esquerdo, nivel + 1);
+    }
 }
