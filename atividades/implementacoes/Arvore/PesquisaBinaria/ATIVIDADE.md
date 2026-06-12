@@ -1,4 +1,24 @@
-package atividades.implementacoes.Arvore.PesquisaBinaria;
+# Implementação Árvore Binária de Pesquisa 
+
+## Nó
+
+```java
+
+public class No {
+    int valor;
+    No esquerdo;
+    No direito;
+
+    public No(int valor) {
+        this.valor = valor;
+    }
+}
+
+```
+
+## Arvore
+
+```java
 
 public class ArvorePesquisaBinaria {
     private No raiz;
@@ -207,3 +227,5 @@ public class ArvorePesquisaBinaria {
         );
     }
 }
+
+```
